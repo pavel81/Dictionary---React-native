@@ -5,13 +5,15 @@ import SearchWord from './SearchWord';
 
 const App = () => {
   const [dictionary, setDictionary] = useState([]);
+  let found = '';
+  let word = '';
  
   return (
     <View style={styles.layout}>
       <Text> Please add a word. {'\n'}</Text>
       <AddWord onChange ={setDictionary} value = {dictionary} />
       <Text>{'\n'}</Text>
-      <SearchWord listOfWords = {dictionary} />
+      <SearchWord listOfWords = {dictionary} isFound = {found} isWord = {word} />
     </View>
   )}
 

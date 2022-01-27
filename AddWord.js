@@ -8,7 +8,7 @@ const AddWord = (props) => {
   const addWordToDictionary = (event) => {
     event.preventDefault();
     if (wordToAdd) {
-      props.onChange([...props.value, ...wordToAdd]);
+      props.onChange(props.value.concat(wordToAdd));
     }
     setWordToAdd('');
   };

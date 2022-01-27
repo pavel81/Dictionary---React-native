@@ -1,26 +1,23 @@
 import React, {useState} from 'react';
-import {TextInput, Text, Button, View, StyleSheet} from 'react-native';
-import DisplayMessage from './displayMessage';
+import {View} from 'react-native';
+import DisplayMessage from './DisplayMessage';
 import Layout from './Layout';
 
 const SearchWord = (props) => {
   const [wordToSearch, setWordToSearch] = useState('');
-   const [message, setMessage] = useState('');
-  let found = '';
-  let word = '';
 
   const searchWordInDictionary = (event) => {
     event.preventDefault();
-    word = wordToSearch;
-    found = 'not found'
+    props.isFound = 'not found'
+    props.isWord = wordToSearch;
     for (let words of props.listOfWords) {
-      if (words === word) {
-        found = 'found';
+      if (words === props.isWord) {
+        props.isFound = 'found';
       }
     }
     setWordToSearch('');
-    setMessage(`The word ${word} was ${found} in the dictionary.`);
   }
+
   return (
     <View>
    <Layout 
@@ -28,9 +25,9 @@ const SearchWord = (props) => {
     value = {wordToSearch}
     onPress = {searchWordInDictionary}
     title ='Search'
-    />      
-    <Text>{message}</Text>
-    </View> 
+    />    
+    <DisplayMessage isWord = {props.isWord} value = {props.isFound} />  
+    </View>  
   );
 }
 
