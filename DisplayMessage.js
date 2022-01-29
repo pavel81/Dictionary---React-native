@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text} from 'react-native';
 
 const DisplayMessage = (props) => {
+  const[message, setMessage] = useState('');
+  
+  useEffect (()=> {
+  props.isWord ? setMessage(`The word ${props.isWord} was ${props.value} in the dictionary.`) : setMessage('');}, [props.isWord, props.value]);
 
-    return  <Text>
-      {props.isWord ? `The word ${props.isWord} was ${props.value} in the dictionary.` : ''}
-      </Text>
-
+  return  <Text>{message}</Text>
 }
 
 export default DisplayMessage;

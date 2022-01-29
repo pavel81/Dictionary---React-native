@@ -5,14 +5,16 @@ import Layout from './Layout';
 
 const SearchWord = (props) => {
   const [wordToSearch, setWordToSearch] = useState('');
+  const [found, setFound] = useState('');
+  const [word,setWord] = useState('');
 
   const searchWordInDictionary = (event) => {
     event.preventDefault();
-    props.isFound = 'not found'
-    props.isWord = wordToSearch;
+    setFound('not found');
+    setWord(wordToSearch);
     for (let words of props.listOfWords) {
-      if (words === props.isWord) {
-        props.isFound = 'found';
+      if (words === wordToSearch) {
+        setFound('found');
       }
     }
     setWordToSearch('');
@@ -26,7 +28,7 @@ const SearchWord = (props) => {
     onPress = {searchWordInDictionary}
     title ='Search'
     />    
-    <DisplayMessage isWord = {props.isWord} value = {props.isFound} />  
+    <DisplayMessage isWord = {word} value = {found} />  
     </View>  
   );
 }
